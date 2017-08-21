@@ -8,11 +8,12 @@ let leaderScale = d3.scaleLinear()
 const draw = (words) => {
 
   d3.select('#top-score').append('svg')
+    .style('margin-bottom', 40)
     .attr('width', 750)
     .attr('height', 300)
     .attr('class', 'wordcloud')
     .append('g')
-    .attr('transform', 'translate(320, 200)')
+    .attr('transform', 'translate(320, 500)')
     .selectAll('text')
     .data(words)
     .enter()
@@ -35,7 +36,7 @@ const load = () => {
       .map(function (d) { return { text: d.Name, size: +d.G }})
       .sort(function (a, b) { return d3.descending(a.size, b.size)})
       .slice(0, 100)
-    
+
     d3.layout.cloud().size([width, height])
       .words(players)
       .padding(5)
